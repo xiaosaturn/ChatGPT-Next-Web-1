@@ -472,6 +472,7 @@ export function Settings() {
           ) : (
             <></>
           )}
+        </List>
 
         <List>
           <ListItem
