@@ -37,7 +37,7 @@ export default function RootLayout({
         <script src="/serviceWorkerRegister.js" defer></script>
 
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3587655547787611" crossOrigin="anonymous"></script>
-        <ins class="adsbygoogle"
+        <ins className="adsbygoogle"
         style={{ display: "block" }}
         data-ad-client="ca-pub-3587655547787611"
         data-ad-slot="7040899921"
@@ -49,7 +49,7 @@ export default function RootLayout({
 
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3587655547787611"
             crossOrigin="anonymous"></script>
-        <ins class="adsbygoogle"
+        <ins className="adsbygoogle"
             style={{ display: "block" }}
             data-ad-format="autorelaxed"
             data-ad-client="ca-pub-3587655547787611"
