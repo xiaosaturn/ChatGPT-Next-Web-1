@@ -38,7 +38,7 @@ export default function RootLayout({
 
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3587655547787611" crossOrigin="anonymous"></script>
         <ins class="adsbygoogle"
-        style="display:block"
+        style={{ display: "block" }}
         data-ad-client="ca-pub-3587655547787611"
         data-ad-slot="7040899921"
         data-ad-format="auto"
@@ -50,7 +50,7 @@ export default function RootLayout({
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3587655547787611"
             crossOrigin="anonymous"></script>
         <ins class="adsbygoogle"
-            style="display:block"
+            style={{ display: "block" }}
             data-ad-format="autorelaxed"
             data-ad-client="ca-pub-3587655547787611"
             data-ad-slot="2526179038"></ins>
