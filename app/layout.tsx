@@ -35,6 +35,8 @@ export default function RootLayout({
         <meta name="version" content={buildConfig.commitId} />
         <link rel="manifest" href="/site.webmanifest"></link>
         <script src="/serviceWorkerRegister.js" defer></script>
+      </head>
+      <body>
 
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3587655547787611" crossOrigin="anonymous"></script>
         <ins className="adsbygoogle"
@@ -58,8 +60,8 @@ export default function RootLayout({
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
 
-      </head>
-      <body>{children}</body>
+        {children}
+      </body>
     </html>
   );
 }
