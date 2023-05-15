@@ -35,6 +35,31 @@ export default function RootLayout({
         <meta name="version" content={buildConfig.commitId} />
         <link rel="manifest" href="/site.webmanifest"></link>
         <script src="/serviceWorkerRegister.js" defer></script>
+
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3587655547787611"
+          crossorigin="anonymous">
+        </script>
+          <ins class="adsbygoogle"
+          style="display:block"
+          data-ad-client="ca-pub-3587655547787611"
+          data-ad-slot="7040899921"
+          data-ad-format="auto"
+          data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3587655547787611"
+            crossorigin="anonymous"></script>
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-format="autorelaxed"
+            data-ad-client="ca-pub-3587655547787611"
+            data-ad-slot="2526179038"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
       </head>
       <body>{children}</body>
     </html>
