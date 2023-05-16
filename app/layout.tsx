@@ -38,30 +38,36 @@ export default function RootLayout({
       </head>
       <body>
 
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3587655547787611" crossOrigin="anonymous"></script>
-        <ins className="adsbygoogle"
-        style={{ display: "block" }}
-        data-ad-client="ca-pub-3587655547787611"
-        data-ad-slot="7040899921"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3587655547787611"
-            crossOrigin="anonymous"></script>
-        <ins className="adsbygoogle"
-            style={{ display: "block" }}
-            data-ad-format="autorelaxed"
-            data-ad-client="ca-pub-3587655547787611"
-            data-ad-slot="2526179038"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+        <GoogleAds />
 
         {children}
       </body>
     </html>
   );
+}
+
+function GoogleAds() {
+  return window.__wxjs_environment == "miniprogram" ? (<></>) : (
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3587655547787611" crossOrigin="anonymous"></script>
+    <ins className="adsbygoogle"
+    style={{ display: "block" }}
+    data-ad-client="ca-pub-3587655547787611"
+    data-ad-slot="7040899921"
+    data-ad-format="auto"
+    data-full-width-responsive="true"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3587655547787611"
+        crossOrigin="anonymous"></script>
+    <ins className="adsbygoogle"
+        style={{ display: "block" }}
+        data-ad-format="autorelaxed"
+        data-ad-client="ca-pub-3587655547787611"
+        data-ad-slot="2526179038"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+  )
 }
