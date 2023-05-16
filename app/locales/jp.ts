@@ -5,7 +5,7 @@ const jp: LocaleType = {
   WIP: "この機能は開発中です……",
   Error: {
     Unauthorized:
-      "現在は未承認状態です。左下の設定ボタンをクリックし、アクセスパスワードを入力してください。",
+      "現在は未承認状態です。左下の設定ボタンをクリックし、アクセスパスワードを入力してください。（关注公众号“黄师傅团呀团”，发送“ChatGPT访问密码”，即可获取）",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 通のチャット`,

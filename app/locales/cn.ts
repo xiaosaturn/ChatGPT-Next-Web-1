@@ -4,7 +4,7 @@ const cn = {
   WIP: "该功能仍在开发中……",
   Error: {
     Unauthorized:
-      "访问密码不正确或为空，请前往[设置](/#/settings)页输入正确的访问码",
+      "访问密码不正确或为空，关注公众号“黄师傅团呀团”，发送“ChatGPT访问密码”，即可获取），请前往[设置](/#/settings)页输入正确的访问密码",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 条对话`,

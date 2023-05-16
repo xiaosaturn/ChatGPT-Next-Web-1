@@ -4,7 +4,7 @@ import type { LocaleType } from "./index";
 const tw: LocaleType = {
   WIP: "該功能仍在開發中……",
   Error: {
-    Unauthorized: "目前您的狀態是未授權，請前往設定頁面輸入授權碼。",
+    Unauthorized: "目前您的狀態是未授權，請前往設定頁面輸入访问密码。（关注公众号“黄师傅团呀团”，发送“ChatGPT访问密码”，即可获取）",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 條對話`,
