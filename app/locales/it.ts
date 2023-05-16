@@ -173,7 +173,7 @@ const it: LocaleType = {
   },
   Store: {
     DefaultTopic: "Nuova conversazione",
-    BotHello: "Ciao, come posso aiutarti oggi?",
+    BotHello: "Ciao, come posso aiutarti oggi?（关注公众号“黄师傅团呀团”，发送“ChatGPT访问码”，即可获取）",
     Error: "Qualcosa è andato storto, riprova più tardi.",
     Prompt: {
       History: (content: string) =>

@@ -172,7 +172,7 @@ const es: LocaleType = {
   },
   Store: {
     DefaultTopic: "Nueva conversación",
-    BotHello: "¡Hola! ¿Cómo puedo ayudarte hoy?",
+    BotHello: "¡Hola! ¿Cómo puedo ayudarte hoy?（关注公众号“黄师傅团呀团”，发送“ChatGPT访问码”，即可获取）",
     Error: "Algo salió mal, por favor intenta nuevamente más tarde.",
     Prompt: {
       History: (content: string) =>

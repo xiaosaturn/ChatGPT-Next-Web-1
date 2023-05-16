@@ -168,7 +168,7 @@ const tw: LocaleType = {
   },
   Store: {
     DefaultTopic: "新的對話",
-    BotHello: "請問需要我的協助嗎？",
+    BotHello: "請問需要我的協助嗎？（关注公众号“黄师傅团呀团”，发送“ChatGPT访问码”，即可获取）",
     Error: "出錯了，請稍後再嘗試",
     Prompt: {
       History: (content: string) =>
