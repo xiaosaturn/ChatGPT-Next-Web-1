@@ -7,7 +7,6 @@ import "./styles/highlight.scss";
 import { getBuildConfig } from "./config/build";
 
 const buildConfig = getBuildConfig();
-googleAds()
 
 export const metadata = {
   title: "黄老师的ChatGPT",
