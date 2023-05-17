@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-page-custom-font */
+import dynamic from "next/dynamic";
 import "./styles/globals.scss";
 import "./styles/markdown.scss";
 import "./styles/highlight.scss";
@@ -38,7 +39,10 @@ export default function RootLayout({
       </head>
       <body>
 
-        { <GoodsAds /> }
+        { dynamic(() => {
+            return <GoodsAds />
+          }, { ssr: false })  
+        }
 
         {children}
       </body>
