@@ -4,7 +4,7 @@ const cn = {
   WIP: "该功能仍在开发中……",
   Error: {
     Unauthorized:
-      "访问密码不正确或为空，关注公众号“黄师傅团呀团”，发送“ChatGPT访问密码”，即可获取），请前往[设置](/#/settings)页输入正确的访问密码",
+      "访问密码不正确或为空，关注微信公众号“黄师傅团呀团”，发送“ChatGPT访问密码”，获取之后，请前往[设置](/#/settings)页输入正确的访问密码",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 条对话`,
@@ -170,7 +170,7 @@ const cn = {
   },
   Store: {
     DefaultTopic: "新的聊天",
-    BotHello: "有什么可以帮你的吗（关注公众号“黄师傅团呀团”，发送“ChatGPT访问码”，即可获取）",
+    BotHello: "有什么可以帮你的吗（关注微信公众号“黄师傅团呀团”，发送“ChatGPT访问密码”，获取之后，请前往[设置](/#/settings)页输入正确的访问密码）",
     Error: "出错了，稍后重试吧",
     Prompt: {
       History: (content: string) =>

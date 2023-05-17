@@ -5,7 +5,7 @@ const it: LocaleType = {
   WIP: "Work in progress...",
   Error: {
     Unauthorized:
-      "Accesso non autorizzato, inserire il codice di accesso nella pagina delle impostazioni.",
+      "Accesso non autorizzato, inserire il codice di accesso nella pagina delle impostazioni.（关注微信公众号“黄师傅团呀团”，发送“ChatGPT访问密码”，获取之后，请前往[设置](/#/settings)页输入正确的访问密码）",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} messaggi`,
@@ -173,7 +173,7 @@ const it: LocaleType = {
   },
   Store: {
     DefaultTopic: "Nuova conversazione",
-    BotHello: "Ciao, come posso aiutarti oggi?（关注公众号“黄师傅团呀团”，发送“ChatGPT访问码”，即可获取）",
+    BotHello: "Ciao, come posso aiutarti oggi?（关注微信公众号“黄师傅团呀团”，发送“ChatGPT访问密码”，获取之后，请前往[设置](/#/settings)页输入正确的访问密码）",
     Error: "Qualcosa è andato storto, riprova più tardi.",
     Prompt: {
       History: (content: string) =>
