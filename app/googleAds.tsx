@@ -1,5 +1,9 @@
 import { useEffect } from "react";
 
+declare global {
+  interface Window { __wxjs_environment: string }
+}
+
 export function GoogleAds() {
     useEffect(() => {
       if (window && window.__wxjs_environment && window.__wxjs_environment === "miniprogram") {
