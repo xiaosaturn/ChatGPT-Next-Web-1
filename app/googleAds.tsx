@@ -8,7 +8,7 @@ export function GoogleAds() {
     useEffect(() => {
       if (window && window.__wxjs_environment && window.__wxjs_environment === "miniprogram") {
         // 微信小程序不加载谷歌广告
-      } else if (navigator &&  navigator.userAgent && navigator.userAgent.toLowerCase().includes("toutiaomicoapp")) {
+      } else if (navigator &&  navigator.userAgent && navigator.userAgent.toLowerCase().includes("toutiaomicroapp")) {
         // 字节系小程序不加载谷歌广告
       } else {
         // 浏览器打开的，加载谷歌广告
