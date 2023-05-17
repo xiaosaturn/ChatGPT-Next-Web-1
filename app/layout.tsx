@@ -3,7 +3,6 @@ import "./styles/globals.scss";
 import "./styles/markdown.scss";
 import "./styles/highlight.scss";
 import { getBuildConfig } from "./config/build";
-import { GoogleAds } from './googleAds';
 
 const buildConfig = getBuildConfig();
 
@@ -38,7 +37,6 @@ export default function RootLayout({
         <script src="/serviceWorkerRegister.js" defer></script>
       </head>
       <body>
-        <GoogleAds />
         {children}
       </body>
     </html>

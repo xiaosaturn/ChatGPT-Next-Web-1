@@ -4,6 +4,8 @@ require("../polyfill");
 
 import { useState, useEffect } from "react";
 
+import { GoogleAds } from '../googleAds'
+
 import styles from "./home.module.scss";
 
 import BotIcon from "../icons/bot.svg";
@@ -145,6 +147,7 @@ export function Home() {
     <ErrorBoundary>
       <Router>
         <Screen />
+        <GoogleAds />
       </Router>
     </ErrorBoundary>
   );
