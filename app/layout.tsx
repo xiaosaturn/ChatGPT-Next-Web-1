@@ -47,7 +47,7 @@ export default function RootLayout({
 }
 
 function GoodsAds() {
-  if (window.__wxjs_environment === "miniprogram") {
+  if ((window as any).__wxjs_environment === "miniprogram") {
     return <></>;
   }
   return (
