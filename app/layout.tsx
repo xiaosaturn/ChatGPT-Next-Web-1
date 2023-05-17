@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-page-custom-font */
+import { useEffect } from "react";
 import dynamic from "next/dynamic";
 import "./styles/globals.scss";
 import "./styles/markdown.scss";
@@ -6,6 +7,7 @@ import "./styles/highlight.scss";
 import { getBuildConfig } from "./config/build";
 
 const buildConfig = getBuildConfig();
+googleAds()
 
 export const metadata = {
   title: "黄老师的ChatGPT",
@@ -38,45 +40,49 @@ export default function RootLayout({
         <script src="/serviceWorkerRegister.js" defer></script>
       </head>
       <body>
-
-        { dynamic(() => {
-            return <GoodsAds />
-          }, { ssr: false })  
-        }
-
+        <GoogleAds />
         {children}
       </body>
     </html>
   );
 }
 
-function GoodsAds() {
-  if ((window as any).__wxjs_environment === "miniprogram") {
-    return <></>;
-  }
+function GoogleAds() {
+  useEffect(() => {
+    if (window && window.__wxjs_environment == "miniprogram") {
+      // 微信小程序不加载谷歌广告
+    } else if (navigator &&  navigator.userAgent && navigator.userAgent.toLowerCase().includes("toutiaomicoapp")) {
+      // 字节系小程序不加载谷歌广告
+    } else {
+      // 浏览器打开的，加载谷歌广告
+      const script = document.createElement("script");
+      script.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+      script.async = true;
+      script.crossOrigin = "anonymous";
+      document.body.appendChild(script);
+
+      const script2 = document.createElement("script");
+      const newContent = document.createTextNode("(adsbygoogle = window.adsbygoogle || []).push({});");
+      script2.appendChild(newContent);
+      document.body.appendChild(script2);
+    }
+  }, []);
   return (
     <>
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3587655547787611" crossOrigin="anonymous"></script>
       <ins className="adsbygoogle"
-      style={{ display: "block" }}
-      data-ad-client="ca-pub-3587655547787611"
-      data-ad-slot="7040899921"
-      data-ad-format="auto"
-      data-full-width-responsive="true"></ins>
-      <script>
-          (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
+        style={{ display: "block" }}
+        data-ad-client="ca-pub-3587655547787611"
+        data-ad-slot="7040899921"
+        data-ad-format="auto"
+        data-full-width-responsive="true">
+      </ins>
 
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3587655547787611"
-        crossOrigin="anonymous"></script>
       <ins className="adsbygoogle"
         style={{ display: "block" }}
         data-ad-format="autorelaxed"
         data-ad-client="ca-pub-3587655547787611"
-        data-ad-slot="2526179038"></ins>
-      <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-      </script>
+        data-ad-slot="2526179038">
+      </ins>
     </>
   );
 }
