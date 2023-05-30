@@ -1,5 +1,6 @@
 import { useDebouncedCallback } from "use-debounce";
 import { useState, useRef, useEffect, useLayoutEffect } from "react";
+import { getServerSideConfig } from "../config/server";
 
 import SendWhiteIcon from "../icons/send-white.svg";
 import BrainIcon from "../icons/brain.svg";
@@ -485,7 +486,53 @@ export function Chat() {
     }
   };
 
+  const getIPAddress = async () => {
+    const ipAddr = await fetch('https://api.yshxk.com/api/getIPAddr');
+    return ipAddr;
+  }
+
+  const serverConfig = getServerSideConfig();
+
+  const isSendProblem = () => {
+    const currentIP = getIPAddress();
+    const ipKey = 'IP-' + currentIP;
+    const jsonString = localStorage.getItem(ipKey);
+
+    const storedCount = jsonString ? JSON.parse(jsonString).count : 0;
+    const storedTimestamp = jsonString ? JSON.parse(jsonString).timestamp : '';
+
+    let count = storedCount ? Number(storedCount) : 0; 
+    let timestamp = storedTimestamp ? new Date(storedTimestamp) : new Date();
+    const now = new Date();
+    const diff = now.getTime() - timestamp.getTime();
+    const diffHours = Math.floor(diff / (1000 * 60 * 60));
+
+    if (diffHours > 24) {
+      localStorage.setItem(ipKey, JSON.stringify({
+        timestamp: now.getTime().toString(),
+        count: '0'
+      }))
+      return true;
+    } else {
+      if (count > serverConfig.problemCountPerDay) {
+        return false;
+      } else {
+        count++;
+        localStorage.setItem(ipKey, JSON.stringify({
+          timestamp: timestamp.toString(),
+          count: count.toString()
+        }));
+        return true;
+      }
+    }
+  }
+
   const doSubmit = (userInput: string) => {
+    if (!isSendProblem()) {
+      // 次数用完了，不允许发送了
+      alert('次数用完了，不允许发送了，请过段时间重试');
+      return;
+    };
     if (userInput.trim() === "") return;
     setIsLoading(true);
     chatStore.onUserInput(userInput).then(() => setIsLoading(false));
