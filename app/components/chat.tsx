@@ -509,17 +509,26 @@ export function Chat() {
     const diffHours = Math.floor(diff / (1000 * 60 * 60));
     
     console.log('serverConfig:', serverConfig)
+    console.log('ipKey:', ipKey)
+    console.log('jsonString:', jsonString)
+    console.log('diffHours:', diffHours)
+    console.log('count:', count)
+    console.log('timestamp:', timestamp)
     
     if (diffHours > 24) {
+      console.log('大于24小时了')
       localStorage.setItem(ipKey, JSON.stringify({
         timestamp: now.getTime().toString(),
         count: '0'
       }))
       return true;
     } else {
+      console.log('没大于24小时了')
       if (count > problemCountPerDay) {
+        console.log('大于10次了')
         return false;
       } else {
+        console.log('没大于10次了')
         count++;
         localStorage.setItem(ipKey, JSON.stringify({
           timestamp: timestamp.toString(),
