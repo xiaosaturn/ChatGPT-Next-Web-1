@@ -492,6 +492,7 @@ export function Chat() {
   }
 
   const serverConfig = getServerSideConfig();
+  const problemCountPerDay = Number(serverConfig.problemCountPerDay);
 
   const isSendProblem = () => {
     const currentIP = getIPAddress();
@@ -508,7 +509,7 @@ export function Chat() {
     const diffHours = Math.floor(diff / (1000 * 60 * 60));
     
     console.log('serverConfig:', serverConfig)
-
+    
     if (diffHours > 24) {
       localStorage.setItem(ipKey, JSON.stringify({
         timestamp: now.getTime().toString(),
@@ -516,7 +517,7 @@ export function Chat() {
       }))
       return true;
     } else {
-      if (count > serverConfig.problemCountPerDay) {
+      if (count > problemCountPerDay) {
         return false;
       } else {
         count++;
