@@ -492,7 +492,7 @@ export function Chat() {
   }
 
   const serverConfig = getServerSideConfig();
-  const problemCountPerDay = Number(serverConfig.problemCountPerDay);
+  const problemCountPerDay = Number(process.env.PROBLEM_COUNT_PER_DAY);
 
   const isSendProblem = () => {
     const currentIP = getIPAddress();
@@ -509,6 +509,7 @@ export function Chat() {
     const diffHours = Math.floor(diff / (1000 * 60 * 60));
     
     console.log('serverConfig:', serverConfig)
+    console.log('problemCountPerDay:', problemCountPerDay)
     console.log('ipKey:', ipKey)
     console.log('jsonString:', jsonString)
     console.log('diffHours:', diffHours)
