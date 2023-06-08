@@ -487,57 +487,19 @@ export function Chat() {
   };
 
   const getIPAddress = async () => {
-    const ipAddr = await fetch('https://api.yshxk.com/api/getIPAddr');
+    const response = await fetch('https://api.yshxk.com/api/getIPAddr');
+    const ipAddr = await response.json();
     return ipAddr;
   }
 
-  const serverConfig = getServerSideConfig();
-  const problemCountPerDay = Number(process.env.PROBLEM_COUNT_PER_DAY);
-
-  const isSendProblem = () => {
+  const isSendProblem = async () => {
     const currentIP = getIPAddress();
-    const ipKey = 'IP-' + currentIP;
-    const jsonString = localStorage.getItem(ipKey);
-
-    const storedCount = jsonString ? JSON.parse(jsonString).count : 0;
-    const storedTimestamp = jsonString ? JSON.parse(jsonString).timestamp : '';
-
-    let count = storedCount ? Number(storedCount) : 0; 
-    let timestamp = storedTimestamp ? new Date(storedTimestamp) : new Date();
-    const now = new Date();
-    const diff = now.getTime() - timestamp.getTime();
-    const diffHours = Math.floor(diff / (1000 * 60 * 60));
-    
-    console.log('serverConfig:', serverConfig)
-    console.log('problemCountPerDay:', problemCountPerDay)
-    console.log('ipKey:', ipKey)
-    console.log('jsonString:', jsonString)
-    console.log('diffHours:', diffHours)
-    console.log('count:', count)
-    console.log('timestamp:', timestamp)
-    
-    if (diffHours > 24) {
-      console.log('大于24小时了')
-      localStorage.setItem(ipKey, JSON.stringify({
-        timestamp: now.getTime().toString(),
-        count: '0'
-      }))
-      return true;
-    } else {
-      console.log('没大于24小时了')
-      if (count > problemCountPerDay) {
-        console.log('大于10次了')
-        return false;
-      } else {
-        console.log('没大于10次了')
-        count++;
-        localStorage.setItem(ipKey, JSON.stringify({
-          timestamp: timestamp.toString(),
-          count: count.toString()
-        }));
-        return true;
-      }
+    const response = await fetch('https://api.yshxk.com/api/cansendproblem?ip=' + currentIP);
+    const result = await response.json();
+    if (result.code == 200) {
+      return result.data?.isCanSend;
     }
+    return false;
   }
 
   const doSubmit = (userInput: string) => {
