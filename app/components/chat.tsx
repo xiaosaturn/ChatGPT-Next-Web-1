@@ -493,7 +493,7 @@ export function Chat() {
   }
 
   const isSendProblem = async () => {
-    const currentIP = getIPAddress();
+    const currentIP = await getIPAddress();
     const response = await fetch('https://api.yshxk.com/api/cansendproblem?ip=' + currentIP);
     const result = await response.json();
     if (result.code == 200) {
