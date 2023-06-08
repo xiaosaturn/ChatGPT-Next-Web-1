@@ -505,8 +505,15 @@ export function Chat() {
     return false;
   }
 
-  const doSubmit = (userInput: string) => {
-    if (!isSendProblem()) {
+  const doSubmit = async (userInput: string) => {
+    const response = await fetch('https://api.yshxk.com/api/cansendproblem');
+    let jsonObj;
+    if (response.status == 200) {
+      jsonObj = await response.json();
+      console.log(jsonObj)
+    }
+    console.log('看下jsonObj:', jsonObj)
+    if (!jsonObj.data?.isCanSend) {
       // 次数用完了，不允许发送了
       alert('次数用完了，不允许发送了，请过段时间重试');
       return;
