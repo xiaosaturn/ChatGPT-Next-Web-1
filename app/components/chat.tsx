@@ -488,16 +488,19 @@ export function Chat() {
 
   const getIPAddress = async () => {
     const response = await fetch('https://api.yshxk.com/api/getIPAddr');
-    const ipAddr = await response.json();
-    return ipAddr;
+    if (response.status === 200) {
+      return response.text();
+    }
+    return '0.0.0.0';
   }
 
   const isSendProblem = async () => {
-    const currentIP = await getIPAddress();
-    const response = await fetch('https://api.yshxk.com/api/cansendproblem?ip=' + currentIP);
-    const result = await response.json();
-    if (result.code == 200) {
-      return result.data?.isCanSend;
+    // const currentIP = await getIPAddress();
+    const response = await fetch('https://api.yshxk.com/api/cansendproblem');
+    if (response.status == 200) {
+      const jsonObj = await response.json();
+      console.log(jsonObj)
+      return jsonObj.data?.isCanSend;
     }
     return false;
   }
