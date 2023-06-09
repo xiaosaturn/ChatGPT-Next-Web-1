@@ -1,6 +1,7 @@
 import { prettyObject } from "@/app/utils/format";
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "../../auth";
+import { canSendProblem } from "../../can-send-problem";
 import { requestOpenai } from "../../common";
 
 async function handle(
@@ -13,6 +14,14 @@ async function handle(
   if (authResult.error) {
     return NextResponse.json(authResult, {
       status: 401,
+    });
+  }
+
+  const isCanSend = await canSendProblem();
+  if (!isCanSend) {
+    return NextResponse.json({
+      error: true,
+      msg: "次数用完了，不允许发送了，请过段时间重试",
     });
   }
 
