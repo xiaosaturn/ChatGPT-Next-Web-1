@@ -505,25 +505,15 @@ export function Chat() {
     return false;
   }
 
-  const doSubmit = async (userInput: string) => {
-    fetch('https://api.yshxk.com/api/cansendproblem').then(res => {
-      if (res.status === 200) {
-        res.json().then(resp => {
-          if (resp.data?.isCanSend) {
-            if (userInput.trim() === "") return;
-            setIsLoading(true);
-            chatStore.onUserInput(userInput).then(() => setIsLoading(false));
-            localStorage.setItem(LAST_INPUT_KEY, userInput);
-            setUserInput("");
-            setPromptHints([]);
-            if (!isMobileScreen) inputRef.current?.focus();
-            setAutoScroll(true);
-          } else {
-            alert('次数用完了，不允许发送了，请过段时间重试');
-          }
-        })
-      }
-    })
+  const doSubmit = (userInput: string) => {
+    if (userInput.trim() === "") return;
+    setIsLoading(true);
+    chatStore.onUserInput(userInput).then(() => setIsLoading(false));
+    localStorage.setItem(LAST_INPUT_KEY, userInput);
+    setUserInput("");
+    setPromptHints([]);
+    if (!isMobileScreen) inputRef.current?.focus();
+    setAutoScroll(true);
   };
 
   // stop response
