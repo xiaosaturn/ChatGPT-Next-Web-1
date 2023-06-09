@@ -17,7 +17,7 @@ async function handle(
     });
   }
 
-  const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  const ipAddress = req.headers.get('x-forwarded-for') || req.connection.remoteAddress;
   const isCanSend = await canSendProblem(ipAddress);
   if (!isCanSend) {
     return NextResponse.json({
