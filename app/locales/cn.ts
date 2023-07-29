@@ -236,6 +236,13 @@ const cn = {
       },
     },
   },
+  UserInfo: {
+    Name: "个人中心",
+    Email: "邮箱",
+    CanCount: "可用次数",
+    AllCount: "总次数",
+    ViewAd: "观看广告获取次数"
+  },
   NewChat: {
     Return: "返回",
     Skip: "直接开始",

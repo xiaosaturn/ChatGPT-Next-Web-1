@@ -1,0 +1,84 @@
+@import "../styles/animation.scss";
+
+.user-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    padding-left: 10px;
+
+    .mask-header {
+        display: flex;
+        align-self: flex-start;
+        animation: slide-in ease 0.3s;
+
+        .mask-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+    }
+
+    .user-info {
+        animation: slide-in ease 0.3s;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mask-cards {
+        margin-bottom: 20px;
+    }
+
+    .user-info-detail {
+        margin-bottom: 20px;
+    }
+
+    .user-info-name {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .can-count {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .can-num-count {
+        color: red;
+    }
+
+    .all-count {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .user-info-btn {
+        display: flex;
+        height: 90px;
+    }
+
+    .user-info-btn1 {
+        margin-right: 20px;
+        height: 50px;
+    }
+
+    .user-info-btn2 {
+        height: 50px;
+    }
+
+    .qrcode-con {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .qrcode {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
