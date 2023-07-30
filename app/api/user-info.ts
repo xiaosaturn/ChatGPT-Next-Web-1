@@ -14,6 +14,7 @@ interface Response {
   code: number;
   msg: string;
   data: any;
+  token: string;
 }
 
 const axiosRequest = axios.create({
@@ -61,5 +62,10 @@ export async function userLoginByCode(bodyParams: any) {
 
 export async function getWXaCode() {
   const res = axiosRequest.post(baseUrl + 'wechat/acode');
+  return res;
+}
+
+export async function subCanProblemCount() {
+  const res = axiosRequest.post(baseUrl + 'problem/subCanProblemCount');
   return res;
 }

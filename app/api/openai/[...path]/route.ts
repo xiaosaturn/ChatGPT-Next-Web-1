@@ -2,6 +2,7 @@ import { prettyObject } from "@/app/utils/format";
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "../../auth";
 import { canSendProblem } from "../../can-send-problem";
+import { subCanProblemCount } from '../../user-info';
 import { requestOpenai } from "../../common";
 
 async function handle(
@@ -17,12 +18,20 @@ async function handle(
     });
   }
 
-  const ipAddress = req.headers.get('x-forwarded-for') || '0.0.0.0';
-  const isCanSend = await canSendProblem(ipAddress);
-  if (!isCanSend) {
+  // const ipAddress = req.headers.get('x-forwarded-for') || '0.0.0.0';
+  // const isCanSend = await canSendProblem(ipAddress);
+  const res = await subCanProblemCount();
+  if (res.status == 200) {
+    if (res.data && res.data.count <= 0) {
+      return NextResponse.json({
+        error: true,
+        msg: "次数用完了，请至个人中心观看广告获取次数",
+      });
+    }
+  } else {
     return NextResponse.json({
       error: true,
-      msg: "次数用完了，不允许发送了，请过段时间重试",
+      msg: "发生未知错误，请稍后重试",
     });
   }
 

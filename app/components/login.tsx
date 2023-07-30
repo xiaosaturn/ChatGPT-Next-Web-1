@@ -17,6 +17,15 @@ interface Response{
     token: any;
 }
 
+
+interface Event {
+    target: EventValue;
+}
+
+interface EventValue {
+    value: string;
+}
+
 export function Login() {
     const navigate = useNavigate();
     const [messageApi, contextHolder] = message.useMessage();
@@ -26,15 +35,15 @@ export function Login() {
     const [verificationCode, setVerificationCode] = useState('');
     const [tabIndex, setTabIndex] = useState('1');
 
-    const handleEmailChange = (e) => {
+    const handleEmailChange = (e: Event) => {
         setEmail(e.target.value);
     };
 
-    const handlePasswordChange = (e) => {
+    const handlePasswordChange = (e: Event) => {
         setPassword(e.target.value);
     };
 
-    const handleVerificationCodeChange = (e) => {
+    const handleVerificationCodeChange = (e: Event) => {
         setVerificationCode(e.target.value);
     }
 

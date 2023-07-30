@@ -4,6 +4,14 @@ import styles from './register.module.scss' // 引入自定义的CSS文件
 
 const { Search } = Input;
 
+interface Event {
+    target: EventValue;
+}
+
+interface EventValue {
+    value: string;
+}
+
 const imgUrl = function () {
     const randomNum = Math.floor(Math.random() * 50) + 1;
     return `https://image.xiaosaturn.com/avatar/avatar-${randomNum}.png`;
@@ -16,23 +24,23 @@ export function Register() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [verificationCode, setVerificationCode] = useState('');
 
-    const handleNameChange = (e) => {
+    const handleNameChange = (e: Event) => {
         setName(e.target.value);
     };
 
-    const handleEmailChange = (e) => {
+    const handleEmailChange = (e: Event) => {
         setEmail(e.target.value);
     };
 
-    const handlePasswordChange = (e) => {
+    const handlePasswordChange = (e: Event) => {
         setPassword(e.target.value);
     };
 
-    const handleConfirmPasswordChange = (e) => {
+    const handleConfirmPasswordChange = (e: Event) => {
         setConfirmPassword(e.target.value);
     }
 
-    const handleVerificationCodeChange = (e) => {
+    const handleVerificationCodeChange = (e: Event) => {
         setVerificationCode(e.target.value);
     }
 
