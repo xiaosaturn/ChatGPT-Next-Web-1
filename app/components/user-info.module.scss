@@ -24,6 +24,9 @@
         animation: slide-in ease 0.3s;
         display: flex;
         flex-direction: column;
+        align-self: flex-start;
+        margin-left: 100px;
+        margin-top: 50px;
     }
 
     .mask-cards {
