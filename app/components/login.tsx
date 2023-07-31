@@ -101,7 +101,7 @@ export function Login() {
             });
         }
     }
-    const handleLogin = (e) => {
+    const handleLogin = (e: any) => {
         // 处理登录逻辑
         e.preventDefault();
         if (tabIndex == '1') {

@@ -43,8 +43,8 @@ export function UserInfo() {
                 setLoggedIn(true);
                 localStorage.setItem('userInfo', JSON.stringify(res.data))
                 setUserInfo(res.data);
-                if (!userInfo?.wxcodeUrl || userInfo.wxcodeUrl == '' || 
-                    userInfo.wxcodeUrl == null || userInfo.wxcodeUrl == undefined) {
+                if (!res.data?.wxcodeUrl || res.data.wxcodeUrl == '' || 
+                res.data.wxcodeUrl == null || res.data.wxcodeUrl == undefined) {
                     fetchWXaCode();
                 }
             } else if (res.status == 401) {
@@ -83,6 +83,13 @@ export function UserInfo() {
         setIsModalOpen(false);
     };
 
+    const handleLogout = () => {
+        setLoggedIn(false);
+        localStorage.removeItem('token');
+        localStorage.removeItem('userInfo');
+        navigate(Path.Login);
+    }
+
     return (
         <div className={styles["user-info-container"]}>
             {contextHolder}
@@ -109,8 +116,8 @@ export function UserInfo() {
                     </div>
                 </div>
                 <div className={styles["user-info-btn"]}>
-                    <Button className={styles["user-info-btn1"]} type="primary" onClick={showModal}>观看广告获取5次数</Button>
-                    <Button className={styles["user-info-btn2"]} type="primary" danger onClick={() => { navigate(Path.Login) }}>退出登录</Button>
+                    <Button className={styles["user-info-btn1"]} type="primary" onClick={ showModal }>观看广告获取5次数</Button>
+                    <Button className={styles["user-info-btn2"]} type="primary" danger onClick={ handleLogout }>退出登录</Button>
                 </div>
             </div>
             <Modal title="观看广告" centered open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
