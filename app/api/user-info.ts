@@ -1,14 +1,14 @@
 import axios, { AxiosResponse } from 'axios'
 import { message } from 'antd';
 
-let baseUrl = 'http://127.0.0.1:8686/';
-let origin = window.location.href;
-if (origin.includes('ankerxiao.com')) {
-  // 生产环境
-  baseUrl = 'https://api.yshxk.com/node/';
-}
+// let baseUrl = 'http://127.0.0.1:8686/';
+// let origin = window.location.href;
+// if (origin.includes('ankerxiao.com')) {
+//   // 生产环境
+//   baseUrl = 'https://api.yshxk.com/node/';
+// }
 
-// baseUrl = 'https://api.yshxk.com/node/';
+let baseUrl = 'https://api.yshxk.com/node/';
 
 interface Response {
   code: number;
