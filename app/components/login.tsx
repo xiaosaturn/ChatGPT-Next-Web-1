@@ -4,6 +4,7 @@ import { AppstoreOutlined, CompassOutlined, SmileOutlined, MailOutlined, Setting
 import type { MenuProps } from 'antd';
 import { Input, Button, Select, Space, Menu, Tabs, Spin, message } from 'antd';
 import { Path, SlotID } from "../constant";
+import { useNodeServerStore } from "@/app/store"
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from './login.module.scss' // 引入自定义的CSS文件
 import { userLogin, userLoginByCode } from '../api/user-info';
@@ -28,6 +29,8 @@ interface EventValue {
 
 export function Login() {
     const navigate = useNavigate();
+    const accessStore = useNodeServerStore();
+
     const [messageApi, contextHolder] = message.useMessage();
 
     const [email, setEmail] = useState('');
@@ -65,13 +68,12 @@ export function Login() {
             email,
             password
         });
-        console.log('resdfadf:', res)
         if (res.status == 200) {
             messageApi.open({
                 type: 'success',
                 content: '登录成功'
             });
-            localStorage.setItem('token', res.token);
+            accessStore.updateToken(res.token);
             navigate(Path.UserInfo);
         } else {
             messageApi.open({
@@ -86,13 +88,12 @@ export function Login() {
             email,
             verificationCode
         });
-        console.log('resdfadf:', res)
         if (res.status == 200) {
             messageApi.open({
                 type: 'success',
                 content: '登录成功'
             });
-            localStorage.setItem('token', res.token);
+            accessStore.updateToken(res.token);
             navigate(Path.UserInfo);
         } else {
             messageApi.open({
@@ -109,7 +110,11 @@ export function Login() {
             fetchUserLogin();
         } else if (tabIndex == '2') {
             // 验证码登录
-            fetchUserLoginCode()
+            messageApi.open({
+                type: 'info',
+                content: '暂无开发，敬请期待'
+            });
+            // fetchUserLoginCode()
         }
     };
 

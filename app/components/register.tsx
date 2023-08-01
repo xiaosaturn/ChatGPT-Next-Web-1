@@ -4,6 +4,7 @@ import styles from './register.module.scss' // 引入自定义的CSS文件
 import { userRegister, getVerificationCode } from '../api/user-info';
 import { useNavigate } from "react-router-dom";
 import { Path, SlotID } from "../constant";
+import { useNodeServerStore } from '@/app/store';
 
 const { Search } = Input;
 
@@ -16,6 +17,8 @@ interface EventValue {
 }
 
 export function Register() {
+    const accessStore = useNodeServerStore();
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -133,7 +136,7 @@ export function Register() {
                 type: 'success',
                 content: '注册成功'
             });
-            localStorage.setItem('token', res.token);
+            accessStore.updateToken(res.token);
             navigate(Path.UserInfo);
         } else {
             messageApi.open({

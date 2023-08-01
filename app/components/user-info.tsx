@@ -13,6 +13,7 @@ import newChatStyles from "./new-chat.module.scss";
 import styles from "./user-info.module.scss";
 import { Image, Button, Modal, message } from 'antd';
 import { userLogin, getUserInfo, getWXaCode } from '../api/user-info';
+import { useNodeServerStore } from '@/app/store';
 
 interface UserInfo {
     id: number;
@@ -25,6 +26,8 @@ interface UserInfo {
 }
 
 export function UserInfo() {
+    const accessStore = useNodeServerStore();
+
     const [messageApi, contextHolder] = message.useMessage();
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
@@ -41,7 +44,6 @@ export function UserInfo() {
             const res = await getUserInfo();
             if (res.status == 200) {
                 setLoggedIn(true);
-                localStorage.setItem('userInfo', JSON.stringify(res.data))
                 setUserInfo(res.data);
                 if (!res.data?.wxcodeUrl || res.data.wxcodeUrl == '' || 
                 res.data.wxcodeUrl == null || res.data.wxcodeUrl == undefined) {
@@ -83,10 +85,10 @@ export function UserInfo() {
         setIsModalOpen(false);
     };
 
-    const handleLogout = () => {
+    const handleLogout = (e: any) => {
+        e.preventDefault();
         setLoggedIn(false);
-        localStorage.removeItem('token');
-        localStorage.removeItem('userInfo');
+        accessStore.updateToken('');
         navigate(Path.Login);
     }
 

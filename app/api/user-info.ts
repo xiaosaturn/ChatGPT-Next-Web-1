@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from 'axios'
 import { message } from 'antd';
+import { useNodeServerStore } from "@/app/store"
 
 // let baseUrl = 'http://127.0.0.1:8686/';
 // let origin = window.location.href;
@@ -9,6 +10,8 @@ import { message } from 'antd';
 // }
 
 let baseUrl = 'https://api.yshxk.com/node/';
+
+const accessStore = useNodeServerStore();
 
 interface Response {
   code: number;
@@ -22,7 +25,7 @@ const axiosRequest = axios.create({
   baseURL: baseUrl,
   headers: {
     'Content-Type': 'application/json',
-    Authorization: localStorage.getItem('token') || '',
+    Authorization: accessStore.token || '',
   }
 })
 
