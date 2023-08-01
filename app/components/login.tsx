@@ -13,7 +13,7 @@ import { userLogin, userLoginByCode } from '../api/user-info';
 
 const { Search } = Input;
 
-interface Response{
+interface Response {
     code: number;
     msg: string;
     data: any;
@@ -31,7 +31,9 @@ interface EventValue {
 
 export function Login() {
     const navigate = useNavigate();
-    const accessStore = useNodeServerStore.getState();
+    const accessStore = useNodeServerStore();
+
+    const [token, setToken] = useState('');
 
     const [messageApi, contextHolder] = message.useMessage();
 
@@ -71,11 +73,15 @@ export function Login() {
             password
         });
         if (res.status == 200) {
+            accessStore.updateToken(res.token);
+            if (typeof window !== "undefined") {
+                // 检查是否在客户端环境下
+                localStorage.setItem("token", res.token);
+            }
             messageApi.open({
                 type: 'success',
                 content: '登录成功'
             });
-            accessStore.updateToken(res.token);
             navigate(Path.UserInfo);
         } else {
             messageApi.open({
@@ -125,11 +131,11 @@ export function Login() {
             {contextHolder}
             <Tabs defaultActiveKey='1' onChange={tabChangeEvent} items={[CompassOutlined, SmileOutlined].map((icon, i) => {
                 return {
-                   label: (
+                    label: (
                         i == 0 ? '密码登录' : '验证码登录'
-                   ),
-                   key: String(i + 1),
-                   children: (
+                    ),
+                    key: String(i + 1),
+                    children: (
                         <div>
                             <h1 className={styles["register-heading"]}>登录</h1>
                             <form>
@@ -137,16 +143,16 @@ export function Login() {
                                     <label className={styles["register-label"]}>邮箱:</label>
                                     <Input className={styles["register-input"]} value={email} onChange={handleEmailChange} placeholder='请输入邮箱' />
                                 </div>
-                                { i == 0 && (
+                                {i == 0 && (
                                     <div className={styles["register-input-container"]}>
                                         <label className={styles["register-label"]}>密码:</label>
-                                        <Input.Password className={styles["login-password-input"]}  value={password} onChange={handlePasswordChange} placeholder='请输入密码' />
+                                        <Input.Password className={styles["login-password-input"]} value={password} onChange={handlePasswordChange} placeholder='请输入密码' />
                                     </div>
                                 )}
-                                { i == 1 && (
+                                {i == 1 && (
                                     <div className={styles["register-input-container"]} >
                                         <label className={styles["register-label"]}>验证码:</label>
-                                        <Input className={styles["register-input"]}  value={verificationCode} onChange={handleVerificationCodeChange} placeholder='请输入验证码' />
+                                        <Input className={styles["register-input"]} value={verificationCode} onChange={handleVerificationCodeChange} placeholder='请输入验证码' />
                                         <button className={styles["register-button"]} onClick={getVerificationCode}>获取验证码</button>
                                     </div>
                                 )}

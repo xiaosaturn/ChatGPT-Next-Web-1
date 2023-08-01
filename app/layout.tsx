@@ -8,7 +8,7 @@ const buildConfig = getBuildConfig();
 
 export const metadata = {
   title: "黄老师的ChatGPT",
-  description: "您的个人问答助理",
+  description: "黄老师的ChatGPT",
   viewport: {
     width: "device-width",
     initialScale: 1,

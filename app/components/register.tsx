@@ -134,6 +134,10 @@ export function Register() {
     const toRegister = async () => {
         const res = await userRegister({ email, password, verificationCode });
         if (res.status == 200) {
+            if (typeof window !== "undefined") {
+                // 检查是否在客户端环境下
+                localStorage.setItem("token", res.token);
+            }
             messageApi.open({
                 type: 'success',
                 content: '注册成功'
