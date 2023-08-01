@@ -1,4 +1,3 @@
-"use client";
 
 import styles from "./ui-lib.module.scss";
 import LoadingIcon from "../icons/three-dots.svg";

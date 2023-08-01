@@ -1,4 +1,3 @@
-"use client";
 
 import React, { useEffect, useState } from 'react';
 import { Input, Button, Select, Space, message } from 'antd';

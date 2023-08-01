@@ -123,11 +123,6 @@ export async function getWXaCode(): Promise<Response> {
 }
 
 export async function subCanProblemCount(): Promise<Response> {
-  // let token: any;
-  // if (typeof window !== "undefined") {
-  //   // 检查是否在客户端环境下
-  //   token = localStorage.getItem("token");
-  // }
   return new Promise(async (resolve, reject) => {
     await fetch(baseUrl + 'user/problem/subCanProblemCount', {
       method: 'POST',

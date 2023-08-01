@@ -10,20 +10,20 @@ const BASE_URL = process.env.BASE_URL ?? OPENAI_URL;
 
 export async function requestOpenai(req: NextRequest) {
 
-  const res = await subCanProblemCount();
-  if (res.status == 200) {
-    if (res.data && res.data.count <= 0) {
-      return NextResponse.json({
-        error: true,
-        msg: "次数用完了，请至个人中心观看广告获取次数",
-      });
-    }
-  } else {
-    return NextResponse.json({
-      error: true,
-      msg: res.msg ? res.msg + 'haisss' : "发生未知错误，请稍后重试",
-    });
-  }
+  // const res = await subCanProblemCount();
+  // if (res.status == 200) {
+  //   if (res.data && res.data.count <= 0) {
+  //     return NextResponse.json({
+  //       error: true,
+  //       msg: "次数用完了，请至个人中心观看广告获取次数",
+  //     });
+  //   }
+  // } else {
+  //   return NextResponse.json({
+  //     error: true,
+  //     msg: res.msg ? res.msg + 'haisss' : "发生未知错误，请稍后重试",
+  //   });
+  // }
 
   const controller = new AbortController();
   const authValue = req.headers.get("Authorization") ?? "";
@@ -66,7 +66,7 @@ export async function requestOpenai(req: NextRequest) {
 
   try {
     const res = await fetch(fetchUrl, fetchOptions);
-
+    console.log('chatgpt的返回', res);
     if (res.status === 401) {
       // to prevent browser prompt for credentials
       res.headers.delete("www-authenticate");
