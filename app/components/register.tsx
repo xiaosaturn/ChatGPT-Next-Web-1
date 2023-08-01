@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from 'react';
 import { Input, Button, Select, Space, message } from 'antd';
 import styles from './register.module.scss' // 引入自定义的CSS文件
@@ -17,7 +19,7 @@ interface EventValue {
 }
 
 export function Register() {
-    const accessStore = useNodeServerStore();
+    const accessStore = useNodeServerStore.getState();
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');

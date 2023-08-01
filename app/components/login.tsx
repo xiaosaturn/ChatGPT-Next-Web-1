@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { AppstoreOutlined, CompassOutlined, SmileOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
@@ -29,7 +31,7 @@ interface EventValue {
 
 export function Login() {
     const navigate = useNavigate();
-    const accessStore = useNodeServerStore();
+    const accessStore = useNodeServerStore.getState();
 
     const [messageApi, contextHolder] = message.useMessage();
 

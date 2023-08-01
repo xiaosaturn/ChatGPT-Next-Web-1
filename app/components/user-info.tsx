@@ -1,6 +1,8 @@
 /**
  * 用tsx 写一个个人中心页面， 包含邮箱，有效次数、总次数，一个按钮，点击可以弹出二维码
  */
+"use client";
+
 import React, { useEffect, useState } from 'react';
 import { ErrorBoundary } from "./error";
 import { IconButton } from "./button";
@@ -26,14 +28,13 @@ interface UserInfo {
 }
 
 export function UserInfo() {
-    const accessStore = useNodeServerStore();
-
     const [messageApi, contextHolder] = message.useMessage();
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const navigate = useNavigate();
+    const accessStore = useNodeServerStore.getState();
 
     useEffect(() => {
         fetchUserInfo();

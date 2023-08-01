@@ -11,8 +11,6 @@ import { useNodeServerStore } from "@/app/store"
 
 let baseUrl = 'https://api.yshxk.com/node/';
 
-const accessStore = useNodeServerStore();
-
 interface Response {
   code: number;
   status: number;
@@ -25,7 +23,7 @@ const axiosRequest = axios.create({
   baseURL: baseUrl,
   headers: {
     'Content-Type': 'application/json',
-    Authorization: accessStore.token || '',
+    Authorization: useNodeServerStore.getState().token || '',
   }
 })
 

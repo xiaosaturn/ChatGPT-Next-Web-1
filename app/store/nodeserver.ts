@@ -9,8 +9,6 @@ export interface NodeServerStore {
   updateToken: (_: string) => void;
 }
 
-let fetchState = 0; // 0 not fetch, 1 fetching, 2 done
-
 export const useNodeServerStore = create<NodeServerStore>()(
   persist(
     (set, get) => ({
