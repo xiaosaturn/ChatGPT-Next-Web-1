@@ -1,5 +1,5 @@
-export const OWNER = "Yidadaa";
-export const REPO = "ChatGPT-Next-Web";
+export const OWNER = "MasterH";
+export const REPO = "Free ChatGPT";
 export const REPO_URL = `https://github.com/${OWNER}/${REPO}`;
 export const ISSUE_URL = `https://github.com/${OWNER}/${REPO}/issues`;
 export const UPDATE_URL = `${REPO_URL}#keep-updated`;
@@ -16,6 +16,9 @@ export enum Path {
   NewChat = "/new-chat",
   Masks = "/masks",
   Auth = "/auth",
+  UserInfo = "/user-info",
+  Login = "/login",
+  Register = "/register",
 }
 
 export enum SlotID {
@@ -35,6 +38,7 @@ export enum StoreKey {
   Prompt = "prompt-store",
   Update = "chat-update",
   Sync = "sync",
+  NodeServer = "node-server"
 }
 
 export const MAX_SIDEBAR_WIDTH = 500;

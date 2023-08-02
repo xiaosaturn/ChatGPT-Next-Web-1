@@ -327,6 +327,13 @@ const en: LocaleType = {
       },
     },
   },
+  UserInfo: {
+    Name: "Personal Center",
+    Email: "Email",
+    CanCount: "Can Use Count",
+    AllCount: "All Count",
+    ViewAd: "Get Count By View Ads"
+  },
   NewChat: {
     Return: "Return",
     Skip: "Just Start",

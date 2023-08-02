@@ -1,12 +1,30 @@
+
 import { NextRequest, NextResponse } from "next/server";
+import { useNodeServerStore } from "@/app/store";
+import { subCanProblemCount } from './user-info';
 
 export const OPENAI_URL = "api.openai.com";
 const DEFAULT_PROTOCOL = "https";
-const PROTOCOL = process.env.PROTOCOL || DEFAULT_PROTOCOL;
-const BASE_URL = process.env.BASE_URL || OPENAI_URL;
-const DISABLE_GPT4 = !!process.env.DISABLE_GPT4;
+const PROTOCOL = process.env.PROTOCOL ?? DEFAULT_PROTOCOL;
+const BASE_URL = process.env.BASE_URL ?? OPENAI_URL;
 
 export async function requestOpenai(req: NextRequest) {
+
+  // const res = await subCanProblemCount();
+  // if (res.status == 200) {
+  //   if (res.data && res.data.count <= 0) {
+  //     return NextResponse.json({
+  //       error: true,
+  //       msg: "次数用完了，请至个人中心观看广告获取次数",
+  //     });
+  //   }
+  // } else {
+  //   return NextResponse.json({
+  //     error: true,
+  //     msg: res.msg ? res.msg + 'haisss' : "发生未知错误，请稍后重试",
+  //   });
+  // }
+
   const controller = new AbortController();
   const authValue = req.headers.get("Authorization") ?? "";
   const openaiPath = `${req.nextUrl.pathname}${req.nextUrl.search}`.replaceAll(
@@ -35,57 +53,26 @@ export async function requestOpenai(req: NextRequest) {
   const fetchOptions: RequestInit = {
     headers: {
       "Content-Type": "application/json",
-      "Cache-Control": "no-store",
       Authorization: authValue,
       ...(process.env.OPENAI_ORG_ID && {
         "OpenAI-Organization": process.env.OPENAI_ORG_ID,
       }),
     },
+    cache: "no-store",
     method: req.method,
     body: req.body,
-    // @ts-ignore
-    duplex: "half",
     signal: controller.signal,
   };
 
-  // #1815 try to refuse gpt4 request
-  if (DISABLE_GPT4 && req.body) {
-    try {
-      const clonedBody = await req.text();
-      fetchOptions.body = clonedBody;
-
-      const jsonBody = JSON.parse(clonedBody);
-
-      if ((jsonBody?.model ?? "").includes("gpt-4")) {
-        return NextResponse.json(
-          {
-            error: true,
-            message: "you are not allowed to use gpt-4 model",
-          },
-          {
-            status: 403,
-          },
-        );
-      }
-    } catch (e) {
-      console.error("[OpenAI] gpt4 filter", e);
-    }
-  }
-
   try {
     const res = await fetch(fetchUrl, fetchOptions);
+    console.log('chatgpt的返回', res);
+    if (res.status === 401) {
+      // to prevent browser prompt for credentials
+      res.headers.delete("www-authenticate");
+    }
 
-    // to prevent browser prompt for credentials
-    const newHeaders = new Headers(res.headers);
-    newHeaders.delete("www-authenticate");
-    // to disable nginx buffering
-    newHeaders.set("X-Accel-Buffering", "no");
-
-    return new Response(res.body, {
-      status: res.status,
-      statusText: res.statusText,
-      headers: newHeaders,
-    });
+    return res;
   } finally {
     clearTimeout(timeoutId);
   }

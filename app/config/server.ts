@@ -5,7 +5,7 @@ declare global {
     interface ProcessEnv {
       OPENAI_API_KEY?: string;
       CODE?: string;
-      PROBLEM_COUNT_PER_DAY: number; // 每个ip每天可发送的问题数
+      PROBLEM_COUNT_PER_DAY: string; // 每个ip每天可发送的问题数
       BASE_URL?: string;
       PROXY_URL?: string;
       VERCEL?: string;

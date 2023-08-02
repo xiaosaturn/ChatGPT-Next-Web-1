@@ -2,12 +2,13 @@
 import "./styles/globals.scss";
 import "./styles/markdown.scss";
 import "./styles/highlight.scss";
-import { getClientConfig } from "./config/client";
-import { type Metadata } from 'next';
+import { getBuildConfig } from "./config/build";
 
-export const metadata: Metadata = {
-  title: "ChatGPT Next Web",
-  description: "Your personal ChatGPT Chat Bot.",
+const buildConfig = getBuildConfig();
+
+export const metadata = {
+  title: "黄老师的ChatGPT",
+  description: "黄老师的ChatGPT",
   viewport: {
     width: "device-width",
     initialScale: 1,
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
     { media: "(prefers-color-scheme: dark)", color: "#151515" },
   ],
   appleWebApp: {
-    title: "ChatGPT Next Web",
+    title: "黄老师的ChatGPT",
     statusBarStyle: "default",
   },
 };
@@ -31,11 +32,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="config" content={JSON.stringify(getClientConfig())} />
+        <meta name="version" content={buildConfig.commitId} />
         <link rel="manifest" href="/site.webmanifest"></link>
         <script src="/serviceWorkerRegister.js" defer></script>
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+      </body>
     </html>
   );
 }
+
+
