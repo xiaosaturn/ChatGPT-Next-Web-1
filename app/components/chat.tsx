@@ -1,5 +1,3 @@
-"use client";
-
 import { useDebouncedCallback } from "use-debounce";
 import { useState, useRef, useEffect, useLayoutEffect } from "react";
 import { getServerSideConfig } from "../config/server";
@@ -486,25 +484,6 @@ export function Chat() {
         onSearch(searchText);
       }
     }
-  };
-
-  const getIPAddress = async () => {
-    const response = await fetch("https://api.yshxk.com/api/getIPAddr");
-    if (response.status === 200) {
-      return response.text();
-    }
-    return "0.0.0.0";
-  };
-
-  const isSendProblem = async () => {
-    // const currentIP = await getIPAddress();
-    const response = await fetch("https://api.yshxk.com/api/cansendproblem");
-    if (response.status == 200) {
-      const jsonObj = await response.json();
-      console.log(jsonObj);
-      return jsonObj.data?.isCanSend;
-    }
-    return false;
   };
 
   const doSubmit = (userInput: string) => {
