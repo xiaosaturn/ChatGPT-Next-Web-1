@@ -1,3 +1,5 @@
+"use client";
+
 import { NextRequest, NextResponse } from "next/server";
 import { useNodeServerStore } from "@/app/store";
 import { subCanProblemCount } from "./user-info";

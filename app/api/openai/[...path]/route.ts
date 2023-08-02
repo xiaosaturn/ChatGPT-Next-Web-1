@@ -1,10 +1,11 @@
+"use client";
+
 import { prettyObject } from "@/app/utils/format";
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "../../auth";
 import { canSendProblem } from "../../can-send-problem";
-import { subCanProblemCount } from '../../user-info';
+import { subCanProblemCount } from "../../user-info";
 import { requestOpenai } from "../../common";
-
 
 async function handle(
   req: NextRequest,
