@@ -1,6 +1,4 @@
-import axios, { AxiosResponse } from 'axios'
-import { message } from 'antd';
-import { useNodeServerStore } from "@/app/store"
+import { useNodeServerStore } from "@/app/store";
 
 // let baseUrl = 'http://127.0.0.1:8686/';
 // let origin = window.location.href;
@@ -9,7 +7,7 @@ import { useNodeServerStore } from "@/app/store"
 //   baseUrl = 'https://api.yshxk.com/node/';
 // }
 
-let baseUrl = 'https://api.yshxk.com/node/';
+let baseUrl = "https://api.yshxk.com/node/";
 
 interface Response {
   code: number;
@@ -19,55 +17,38 @@ interface Response {
   token: string;
 }
 
-const axiosRequest = axios.create({
-  baseURL: baseUrl,
-  headers: {
-    'Content-Type': 'application/json',
-    Authorization: useNodeServerStore.getState().token || '',
-  }
-})
-
-axiosRequest.interceptors.response.use((res) => {
-  return res;
-}, (err) => {
-  return {
-    status: 400,
-    msg: '发生未知错误，请稍后重试'
-  }
-});
-
 /**
  * 获取用户信息
  * @param
- * @returns 
+ * @returns
  */
 export async function getUserInfo(): Promise<Response> {
   return new Promise(async (resolve, reject) => {
-    await fetch(baseUrl + 'user/user-info', {
-      method: 'GET',
+    await fetch(baseUrl + "user/user-info", {
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: useNodeServerStore.getState().token || '',
-      }
-    }).then(res => {
-      res.json().then(resp => {
+        "Content-Type": "application/json",
+        Authorization: useNodeServerStore.getState().token || "",
+      },
+    }).then((res) => {
+      res.json().then((resp) => {
         resolve(resp);
       });
-    })
+    });
   });
 }
 
 export async function userLogin(bodyParams: any): Promise<Response> {
   return new Promise(async (resolve, reject) => {
-    await fetch(baseUrl + 'user/login', {
-      method: 'POST',
+    await fetch(baseUrl + "user/login", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: useNodeServerStore.getState().token || '',
+        "Content-Type": "application/json",
+        Authorization: useNodeServerStore.getState().token || "",
       },
-      body: JSON.stringify(bodyParams)
-    }).then(res => {
-      res.json().then(resp => {
+      body: JSON.stringify(bodyParams),
+    }).then((res) => {
+      res.json().then((resp) => {
         resolve(resp);
       });
     });
@@ -82,15 +63,15 @@ export async function userLogin(bodyParams: any): Promise<Response> {
 
 export async function userLoginByCode(bodyParams: any): Promise<Response> {
   return new Promise(async (resolve, reject) => {
-    await fetch(baseUrl + 'user/login-code', {
-      method: 'POST',
+    await fetch(baseUrl + "user/login-code", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: useNodeServerStore.getState().token || '',
+        "Content-Type": "application/json",
+        Authorization: useNodeServerStore.getState().token || "",
       },
-      body: JSON.stringify(bodyParams)
-    }).then(res => {
-      res.json().then(resp => {
+      body: JSON.stringify(bodyParams),
+    }).then((res) => {
+      res.json().then((resp) => {
         resolve(resp);
       });
     });
@@ -105,14 +86,14 @@ export async function userLoginByCode(bodyParams: any): Promise<Response> {
 
 export async function getWXaCode(): Promise<Response> {
   return new Promise(async (resolve, reject) => {
-    await fetch(baseUrl + 'wechat/acode', {
-      method: 'POST',
+    await fetch(baseUrl + "wechat/acode", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: useNodeServerStore.getState().token || '',
-      }
-    }).then(res => {
-      res.json().then(resp => {
+        "Content-Type": "application/json",
+        Authorization: useNodeServerStore.getState().token || "",
+      },
+    }).then((res) => {
+      res.json().then((resp) => {
         resolve(resp);
       });
     });
@@ -124,14 +105,14 @@ export async function getWXaCode(): Promise<Response> {
 
 export async function subCanProblemCount(): Promise<Response> {
   return new Promise(async (resolve, reject) => {
-    await fetch(baseUrl + 'user/problem/subCanProblemCount', {
-      method: 'POST',
+    await fetch(baseUrl + "user/problem/subCanProblemCount", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem("token") || '',
-      }
-    }).then(res => {
-      res.json().then(resp => {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token") || "",
+      },
+    }).then((res) => {
+      res.json().then((resp) => {
         resolve(resp);
       });
     });
@@ -143,15 +124,15 @@ export async function subCanProblemCount(): Promise<Response> {
 
 export async function userRegister(params: any): Promise<Response> {
   return new Promise(async (resolve, reject) => {
-    await fetch(baseUrl + 'user/register', {
-      method: 'POST',
+    await fetch(baseUrl + "user/register", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: useNodeServerStore.getState().token || '',
+        "Content-Type": "application/json",
+        Authorization: useNodeServerStore.getState().token || "",
       },
-      body: JSON.stringify(params)
-    }).then(res => {
-      res.json().then(resp => {
+      body: JSON.stringify(params),
+    }).then((res) => {
+      res.json().then((resp) => {
         resolve(resp);
       });
     });
@@ -167,14 +148,14 @@ export async function userRegister(params: any): Promise<Response> {
 
 export async function getVerificationCode(params: any): Promise<Response> {
   return new Promise(async (resolve, reject) => {
-    await fetch(baseUrl + 'user/verification-code?email=' + params.email, {
-      method: 'GET',
+    await fetch(baseUrl + "user/verification-code?email=" + params.email, {
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: useNodeServerStore.getState().token || '',
-      }
-    }).then(res => {
-      res.json().then(resp => {
+        "Content-Type": "application/json",
+        Authorization: useNodeServerStore.getState().token || "",
+      },
+    }).then((res) => {
+      res.json().then((resp) => {
         resolve(resp);
       });
     });
