@@ -1,7 +1,6 @@
-
 import { NextRequest, NextResponse } from "next/server";
 import { useNodeServerStore } from "@/app/store";
-import { subCanProblemCount } from './user-info';
+import { subCanProblemCount } from "./user-info";
 
 export const OPENAI_URL = "api.openai.com";
 const DEFAULT_PROTOCOL = "https";
@@ -9,7 +8,6 @@ const PROTOCOL = process.env.PROTOCOL ?? DEFAULT_PROTOCOL;
 const BASE_URL = process.env.BASE_URL ?? OPENAI_URL;
 
 export async function requestOpenai(req: NextRequest) {
-
   // const res = await subCanProblemCount();
   // if (res.status == 200) {
   //   if (res.data && res.data.count <= 0) {
@@ -62,11 +60,13 @@ export async function requestOpenai(req: NextRequest) {
     method: req.method,
     body: req.body,
     signal: controller.signal,
+    // @ts-ignore
+    duplex: "half",
   };
 
   try {
     const res = await fetch(fetchUrl, fetchOptions);
-    console.log('chatgpt的返回', res);
+    console.log("chatgpt的返回", res);
     if (res.status === 401) {
       // to prevent browser prompt for credentials
       res.headers.delete("www-authenticate");
