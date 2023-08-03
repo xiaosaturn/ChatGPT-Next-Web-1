@@ -4,7 +4,7 @@ import styles from "./register.module.scss"; // 引入自定义的CSS文件
 import { userRegister, getVerificationCode } from "../api/user-info";
 import { useNavigate } from "react-router-dom";
 import { Path, SlotID } from "../constant";
-import { useNodeServerStore } from "@/app/store";
+import { useAccessStore, useNodeServerStore } from "@/app/store";
 
 const { Search } = Input;
 
@@ -17,7 +17,8 @@ interface EventValue {
 }
 
 export function Register() {
-  const accessStore = useNodeServerStore.getState();
+  const accessStore = useAccessStore.getState();
+  const nodeAccessStore = useNodeServerStore.getState();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -151,6 +152,7 @@ export function Register() {
         localStorage.setItem("token", res.token);
       }
       accessStore.updateToken(res.token);
+      nodeAccessStore.updateToken(res.token);
       navigate(Path.UserInfo);
     } else {
       messageApi.open({

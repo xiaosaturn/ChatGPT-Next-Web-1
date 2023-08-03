@@ -1,6 +1,11 @@
 import { REQUEST_TIMEOUT_MS } from "@/app/constant";
-import { useAccessStore, useAppConfig, useChatStore } from "@/app/store";
-
+import {
+  useAccessStore,
+  useAppConfig,
+  useChatStore,
+  useNodeServerStore,
+} from "@/app/store";
+import { subCanProblemCount } from "@/app/api/user-info";
 import { ChatOptions, getHeaders, LLMApi, LLMUsage } from "../api";
 import Locale from "../../locales";
 import {
@@ -54,6 +59,20 @@ export class ChatGPTApi implements LLMApi {
     const controller = new AbortController();
     options.onController?.(controller);
 
+    let finished = false;
+    let isFirst = true;
+
+    const finish = () => {
+      if (!finished) {
+        options.onFinish(responseText);
+        isFirst = true;
+        finished = true;
+      }
+    };
+
+    let responseText = "";
+    const responseTexts = [responseText];
+
     try {
       const chatPath = this.path(this.ChatPath);
       const chatPayload = {
@@ -70,19 +89,9 @@ export class ChatGPTApi implements LLMApi {
       );
 
       if (shouldStream) {
-        let responseText = "";
-        let finished = false;
-
-        const finish = () => {
-          if (!finished) {
-            options.onFinish(responseText);
-            finished = true;
-          }
-        };
-
         controller.signal.onabort = finish;
 
-        fetchEventSource(chatPath, {
+        fetchEventSource("https://openai.ankerxiao.com/chatgpt/proxy-chat", {
           ...chatPayload,
           async onopen(res) {
             clearTimeout(requestTimeoutId);
@@ -104,7 +113,6 @@ export class ChatGPTApi implements LLMApi {
                 ?.startsWith(EventStreamContentType) ||
               res.status !== 200
             ) {
-              const responseTexts = [responseText];
               let extraInfo = await res.clone().text();
               try {
                 const resJson = await res.clone().json();

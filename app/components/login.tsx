@@ -10,7 +10,7 @@ import {
 import type { MenuProps } from "antd";
 import { Input, Button, Select, Space, Menu, Tabs, Spin, message } from "antd";
 import { Path, SlotID } from "../constant";
-import { useNodeServerStore } from "@/app/store";
+import { useAccessStore, useNodeServerStore } from "@/app/store";
 import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./login.module.scss"; // 引入自定义的CSS文件
 import { userLogin, userLoginByCode } from "../api/user-info";
@@ -34,7 +34,8 @@ interface EventValue {
 
 export function Login() {
   const navigate = useNavigate();
-  const accessStore = useNodeServerStore();
+  const nodeAccessStore = useNodeServerStore();
+  const accessStore = useAccessStore();
 
   const [token, setToken] = useState("");
 
@@ -77,6 +78,7 @@ export function Login() {
     });
     if (res.status == 200) {
       accessStore.updateToken(res.token);
+      nodeAccessStore.updateToken(res.token);
       if (typeof window !== "undefined") {
         // 检查是否在客户端环境下
         localStorage.setItem("token", res.token);

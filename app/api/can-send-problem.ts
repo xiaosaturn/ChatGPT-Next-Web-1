@@ -12,7 +12,7 @@ export async function canSendProblem(ipAddr: string): Promise<any> {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token") || "",
+        Authorization: "",
       },
     }).then((res) => {
       if (res.status == 200) {

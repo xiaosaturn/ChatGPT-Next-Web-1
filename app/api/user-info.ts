@@ -103,13 +103,13 @@ export async function getWXaCode(): Promise<Response> {
   // return resp;
 }
 
-export async function subCanProblemCount(): Promise<Response> {
+export async function subCanProblemCount(token?: string): Promise<Response> {
   return new Promise(async (resolve, reject) => {
     await fetch(baseUrl + "user/problem/subCanProblemCount", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: localStorage.getItem("token") || "",
+        Authorization: token || "",
       },
     }).then((res) => {
       res.json().then((resp) => {
