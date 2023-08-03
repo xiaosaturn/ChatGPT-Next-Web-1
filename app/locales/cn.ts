@@ -3,8 +3,7 @@ import { SubmitKey } from "../store/config";
 const cn = {
   WIP: "该功能仍在开发中……",
   Error: {
-    Unauthorized:
-      "访问密码不正确或为空，关注微信公众号“黄师傅团呀团”，发送“ChatGPT访问密码”，获取之后，请前往[设置](/#/settings)页输入正确的访问密码",
+    Unauthorized: "请登录，关注微信公众号“黄师傅团呀团“，获取最新AI信息",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 条对话`,
@@ -176,7 +175,7 @@ const cn = {
   },
   Store: {
     DefaultTopic: "新的聊天",
-    BotHello: "有什么可以帮你的吗（关注微信公众号“黄师傅团呀团”，发送“ChatGPT访问密码”，获取之后，请前往[设置](/#/settings)页输入正确的访问密码）",
+    BotHello: "有什么可以帮你的吗?",
     Error: "出错了，稍后重试吧",
     Prompt: {
       History: (content: string) => "这是历史聊天总结作为前情提要：" + content,
@@ -241,7 +240,7 @@ const cn = {
     Email: "邮箱",
     CanCount: "可用次数",
     AllCount: "总次数",
-    ViewAd: "观看广告获取次数"
+    ViewAd: "观看广告获取次数",
   },
   NewChat: {
     Return: "返回",

@@ -5,7 +5,7 @@ const en: RequiredLocaleType = {
   WIP: "Coming Soon...",
   Error: {
     Unauthorized:
-      "Unauthorized access, please enter access code in settings page.（关注微信公众号“黄师傅团呀团”，发送“ChatGPT访问密码”，获取之后，请前往[设置](/#/settings)页输入正确的访问密码）",
+      "Unauthorized access, please enter access code in settings page.",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} messages`,
@@ -178,7 +178,7 @@ const en: RequiredLocaleType = {
   },
   Store: {
     DefaultTopic: "New Conversation",
-    BotHello: "Hello! How can I assist you today?（关注微信公众号“黄师傅团呀团”，发送“ChatGPT访问密码”，获取之后，请前往[设置](/#/settings)页输入正确的访问密码）",
+    BotHello: "Hello! How can I assist you today?",
     Error: "Something went wrong, please try again later.",
     Prompt: {
       History: (content: string) =>
@@ -244,7 +244,7 @@ const en: RequiredLocaleType = {
     Email: "Email",
     CanCount: "Can Use Count",
     AllCount: "All Count",
-    ViewAd: "Get Count By View Ads"
+    ViewAd: "Get Count By View Ads",
   },
   NewChat: {
     Return: "Return",
