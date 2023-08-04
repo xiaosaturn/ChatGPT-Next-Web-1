@@ -7,7 +7,7 @@ import { useNodeServerStore } from "@/app/store";
 //   baseUrl = 'https://api.yshxk.com/node/';
 // }
 
-let baseUrl = "https://api.yshxk.com/node/";
+let baseUrl = "https://openai.ankerxiao.com/";
 
 interface Response {
   code: number;
