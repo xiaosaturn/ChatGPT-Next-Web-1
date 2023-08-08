@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Input, Button, Select, Space, message } from "antd";
+import { Input, Button, Select, Space, message, Spin } from "antd";
 import styles from "./register.module.scss"; // 引入自定义的CSS文件
 import { userRegister, getVerificationCode } from "../api/user-info";
 import { useNavigate } from "react-router-dom";
 import { Path, SlotID } from "../constant";
 import { useAccessStore, useNodeServerStore } from "@/app/store";
+import { count } from "console";
 
 const { Search } = Input;
 
@@ -27,6 +28,7 @@ export function Register() {
   const [verificationCode, setVerificationCode] = useState("");
   const [countTime, setCountTime] = useState(0);
   const [countTimeStr, setCountTimeStr] = useState("获取验证码");
+  const [registering, setRegistering] = useState(false);
 
   const [messageApi, contextHolder] = message.useMessage();
 
@@ -137,7 +139,9 @@ export function Register() {
   };
 
   const toRegister = async () => {
+    setRegistering(true);
     const res = await userRegister({ email, password, verificationCode });
+    setRegistering(false);
     if (res.status == 200) {
       if (typeof window !== "undefined") {
         // 检查是否在客户端环境下
@@ -208,21 +212,23 @@ export function Register() {
                 {countTimeStr}
               </button>
             ) : (
-              <button
+              <Button
                 className={styles["register-button"]}
                 onClick={getVeriCode}
               >
                 获取验证码
-              </button>
+              </Button>
             )}
           </div>
-          <button
+          <Button
             className={styles["register-button"]}
             style={{ width: "100px", marginLeft: "120px" }}
             onClick={handleRegister}
+            loading={registering}
+            disabled={registering}
           >
             注册
-          </button>
+          </Button>
         </form>
       </div>
     </div>
