@@ -3,7 +3,8 @@ import { SubmitKey } from "../store/config";
 const cn = {
   WIP: "该功能仍在开发中……",
   Error: {
-    Unauthorized: "请登录，关注微信公众号“黄师傅团呀团“，获取最新AI信息",
+    Unauthorized:
+      "请登录，关注微信公众号【MasterH杂货铺】，获取互联网资讯和最新AI信息",
   },
   ChatItem: {
     ChatItemCount: (count: number) => `${count} 条对话`,
