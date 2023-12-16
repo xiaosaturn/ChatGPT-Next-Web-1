@@ -4,14 +4,23 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-color: #f2f2f2;
     padding-top: 100px;
     padding-left: 100px;
+
+    .tabs-btn {
+        color: var(--black);
+    }
+
+    .tabs-btn::before {
+        width: 200px;
+        right: initial;
+        
+    }
 
     .register-heading {
         font-size: 32px;
         margin-bottom: 24px;
-        color: #333333;
+        color: var(--black);
     }
     
     .register-input-container {
@@ -21,7 +30,7 @@
     }
     
     .register-label {
-        color: #333333;
+        color: var(--black);
         font-weight: bold;
         width: 50px;
         margin-right: 20px;
@@ -30,7 +39,9 @@
     
     .register-input {
         padding: 8px;
-        border: 1px solid #cccccc;
+        border: var(--border-in-light);
+        color: var(--black);
+        background-color: var(--white);
         border-radius: 4px;
         font-size: 14px;
         width: 300px;
@@ -41,7 +52,9 @@
 
     .login-password-input {
         width: 300px !important;
-        border: 1px solid #cccccc;
+        border: var(--border-in-light);
+        color: var(--black);
+        background-color: var(--white);
         border-radius: 4px;
         font-size: 14px !important;
         text-align: left !important;
@@ -50,6 +63,11 @@
         display: flex;
         padding: 0 10px 0 8px;
         position: relative;
+    }
+
+    .login-password-input::placeholder {
+        color: red;
+        font-style: italic;
     }
 
     .login-password-input > input {

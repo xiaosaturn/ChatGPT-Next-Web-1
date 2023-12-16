@@ -4,6 +4,9 @@ import styles from "./register.module.scss"; // 引入自定义的CSS文件
 import { userRegister, getVerificationCode } from "../api/user-info";
 import { useNavigate } from "react-router-dom";
 import { Path, SlotID } from "../constant";
+import { IconButton } from "./button";
+import LeftIcon from "../icons/left.svg";
+import Locale from "../locales";
 import { useAccessStore, useNodeServerStore } from "@/app/store";
 import { count } from "console";
 
@@ -169,6 +172,13 @@ export function Register() {
   return (
     <div className={styles["register-container"]}>
       {contextHolder}
+      <div className={styles["mask-header"]}>
+        <IconButton
+          icon={<LeftIcon />}
+          text={Locale.NewChat.Return}
+          onClick={() => navigate(Path.Home)}
+        ></IconButton>
+      </div>
       <div>
         <h1 className={styles["register-heading"]}>注册</h1>
         <form>

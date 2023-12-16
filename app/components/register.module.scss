@@ -4,14 +4,29 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-color: #f2f2f2;
-    padding-top: 100px;
-    padding-left: 100px;
+    padding-top: 50px;
+    padding-left: 50px;
+
+    .mask-header {
+        position: relative;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-self: flex-start;
+        animation: slide-in ease 0.3s;
+
+        .mask-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+    }
 
     .register-heading {
         font-size: 32px;
         margin-bottom: 24px;
-        color: #333333;
+        color: var(--black);
     }
     
     .register-input-container {
@@ -22,7 +37,7 @@
     
     .register-label {
         margin-bottom: 8px;
-        color: #333333;
+        color: var(--black);
         font-weight: bold;
         width: 100px;
         margin-right: 20px;
@@ -31,7 +46,9 @@
     
     .register-input {
         padding: 8px;
-        border: 1px solid #cccccc;
+        border: var(--border-in-light);
+        color: var(--black);
+        background-color: var(--white);
         border-radius: 4px;
         font-size: 14px;
         width: 300px;
@@ -44,7 +61,9 @@
 
     .register-password-input {
         width: 300px !important;
-        border: 1px solid #cccccc;
+        border: var(--border-in-light);
+        color: var(--white);
+        background-color: var(--white);
         border-radius: 4px;
         font-size: 14px !important;
         text-align: left !important;
@@ -53,6 +72,10 @@
         display: flex;
         padding: 0 10px 0 8px;
         position: relative;
+    }
+
+    .register-password-input::placeholder {
+        color: #999 !important;
     }
 
     .register-password-input > input {

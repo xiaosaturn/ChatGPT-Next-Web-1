@@ -8,7 +8,18 @@ import {
   SettingOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import { Input, Button, Select, Space, Menu, Tabs, Spin, message } from "antd";
+
+import {
+  Input,
+  Button,
+  Select,
+  Space,
+  Menu,
+  Tabs,
+  Spin,
+  message,
+  Image,
+} from "antd";
 import { Path, SlotID } from "../constant";
 import { useAccessStore, useNodeServerStore } from "@/app/store";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -135,6 +146,7 @@ export function Login() {
     <div className={styles["register-container"]}>
       {contextHolder}
       <Tabs
+        className={styles["tabs-btn"]}
         defaultActiveKey="1"
         onChange={tabChangeEvent}
         items={[CompassOutlined, SmileOutlined].map((icon, i) => {
@@ -207,6 +219,15 @@ export function Login() {
           };
         })}
       />
+      <div>
+        <span>扫码关注公众号，获取最新互联网资源和AI技巧</span>
+        <Image
+          alt="加载中"
+          className={styles["contact-c"]}
+          width={200}
+          src="https://image.xiaosaturn.com/Photo/20231216/215907/87lico3qshqrcode_for_gh_96257ef69002_860.jpg"
+        />
+      </div>
     </div>
   );
 }
